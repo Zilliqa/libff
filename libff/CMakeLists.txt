@@ -12,12 +12,15 @@ if(${CURVE} STREQUAL "BN128")
     algebra/curves/bn128/bn128_pairing.cpp
     algebra/curves/bn128/bn128_pp.cpp
   )
-  set(
-    FF_EXTRALIBS
 
-    ${FF_EXTRALIBS}
-    zm
-  )
+  if (CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)")
+    set(
+      FF_EXTRALIBS
+
+      ${FF_EXTRALIBS}
+      zm
+    )
+  endif()
 endif()
 
 add_library(
